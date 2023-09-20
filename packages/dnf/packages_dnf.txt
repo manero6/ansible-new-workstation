@@ -1,0 +1,17 @@
+gimp
+gvfs-nfs
+inkscape
+libreoffice
+lutris
+mpv
+obs-studio
+pip
+qbittorrent
+steam
+tldr
+yt-dlp
+highlight
+tmux
+powerline-go
+vlc
+mediainfo

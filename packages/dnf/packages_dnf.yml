@@ -1,0 +1,13 @@
+---
+- name: Install dnf packages
+  connection: local
+  hosts: localhost
+  become: yes
+  vars:
+    packages: "packages_dnf.txt"
+  tasks:
+  
+    - name: Installing dnf packages
+      ansible.builtin.dnf:
+        state: present
+        name: "{{ lookup('file', packages).splitlines() }}"

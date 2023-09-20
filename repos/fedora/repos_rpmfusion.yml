@@ -1,0 +1,35 @@
+---
+- name: Add RPM Fusion repositories
+  connection: local
+  hosts: localhost
+  become: yes
+  tasks:
+  
+    - name: Get RPM Fusion free URL
+      shell: echo "https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm"
+      register: rpmfusion_free
+
+    - name: Get RPM Fusion nonfree URL
+      shell: echo "https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm"
+      register: rpmfusion_nonfree
+
+    - name: Set correct RPM Fusion free URL
+      set_fact:
+        rpmfusion_free: "{{ rpmfusion_free.stdout }}"
+
+    - name: Set correct RPM Fusion nonfree URL
+      set_fact:
+        rpmfusion_nonfree: "{{ rpmfusion_nonfree.stdout }}"
+
+    - name: Show RPM Fusion URLs
+      debug:
+        msg: 
+          - "free    {{ rpmfusion_free }}"
+          - "nonfree {{ rpmfusion_nonfree }}"
+
+    - name: Adding RPM Fusion repositories using DNF
+      ansible.builtin.dnf:
+        state: latest
+        name: 
+          - "{{ rpmfusion_free }}"
+          - "{{ rpmfusion_nonfree }}"

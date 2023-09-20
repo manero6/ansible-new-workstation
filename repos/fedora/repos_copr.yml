@@ -1,0 +1,19 @@
+---
+- name: Add COPR repositories
+  connection: local
+  hosts: localhost
+  become: yes
+  tasks:
+  
+    - name: Adding COPR repository lukenukem/asus-linux
+      community.general.copr:
+        state: enabled
+        chroot: fedora-rawhide-x86_64
+        name: lukenukem/asus-linux
+
+          #- name: Adding COPR repository ycollet/audinux
+          #  community.general.copr:
+          #    state: enabled
+          #    chroot: fedora-rawhide-x86_64
+          #    name: ycollet/audinux
+

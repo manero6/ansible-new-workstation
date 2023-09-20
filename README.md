@@ -1,2 +1,4 @@
-# ansible-new-workstation
-Ansible plays to set everything up after fresh OS installation
+# Ansible New Workstation
+Ansible plays to set everything up after fresh OS installation.
+
+more info soon ;)

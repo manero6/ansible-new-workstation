@@ -1,0 +1,12 @@
+---
+- name: Install flathub packages
+  connection: local
+  hosts: localhost
+  vars:
+    packages: "packages_flatpak.txt"
+  tasks:
+  
+    - name: Installing flathub packages
+      community.general.flatpak:
+        state: present
+        name: "{{ lookup('file', packages).splitlines() }}"

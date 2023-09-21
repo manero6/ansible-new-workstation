@@ -1,5 +1,7 @@
 ---
+
 - name: Install dnf packages
+  gather_facts: false
   connection: local
   hosts: localhost
   become: yes

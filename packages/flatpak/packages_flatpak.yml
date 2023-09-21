@@ -1,5 +1,7 @@
 ---
+
 - name: Install flathub packages
+  gather_facts: false
   connection: local
   hosts: localhost
   vars:

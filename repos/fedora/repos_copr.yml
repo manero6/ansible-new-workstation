@@ -1,5 +1,7 @@
 ---
+
 - name: Add COPR repositories
+  gather_facts: false
   connection: local
   hosts: localhost
   become: yes

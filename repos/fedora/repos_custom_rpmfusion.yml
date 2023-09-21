@@ -1,5 +1,8 @@
 ---
+# info here: https://rpmfusion.org/Configuration#Command_Line_Setup_using_rpm
+
 - name: Add RPM Fusion repositories
+  gather_facts: false
   connection: local
   hosts: localhost
   become: yes

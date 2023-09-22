@@ -10,6 +10,8 @@
   
     - name: Installing pip packages
       ansible.builtin.pip:
-        extra_args: --user
-        state: present
+        # with the following pip ignores packages already present system-wise (aka under '/usr/lib') and is able to install packages user-wise (aka under '~/.local/bin')
+        extra_args: --ignore-installed
+        # 'latest' (aka 'pip install -U' I suppose) instead of the default 'present' (aka 'pip install')
+        state: latest
         name: "{{ lookup('file', packages).splitlines() }}"

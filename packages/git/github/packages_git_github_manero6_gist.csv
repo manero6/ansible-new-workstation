@@ -1,0 +1,6 @@
+name,URL,link
+clip-cleaner,git@gist.github.com:87436287a64f32032f0b8d66aad35a23.git,clip-cleaner.sh
+ffmpeg-bestcrop,git@gist.github.com:343d46aed29304c5aa3d093bd3c0837a.git,ffmpeg-bestcrop.py
+ffmpeg-list4concat,git@gist.github.com:2036905d4f68056dbb89bd5d089bbe78.git,ffmpeg-list4concat.sh
+speedtest-loop,git@gist.github.com:9e7f15ae79acd6b60519ef094f669b26.git,speedtest-loop.sh
+yt-dlp-mkdir,git@gist.github.com:f11437a3a267b6b8e68476e6334c4cdc.git,yt-dlp-mkdir.sh

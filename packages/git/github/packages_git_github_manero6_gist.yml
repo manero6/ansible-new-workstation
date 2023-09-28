@@ -1,0 +1,33 @@
+---
+
+- name: Install GitHub gists
+  gather_facts: false
+  connection: local
+  hosts: localhost
+  vars:
+    csv_file: 'packages_git_github_manero6_gist.csv'
+    clone_to_path: ~/git/github/manero6/gist
+    link_to_path: ~/bin
+  tasks:
+  
+    - name: Get data from csv file
+      read_csv:
+        path: "{{ csv_file }}"
+      register: csv_data
+
+    - name: Cloning manero6 gists
+      ansible.builtin.git:
+        repo: "{{ item.URL }}"
+        dest: "{{ clone_to_path }}/{{ item.name }}"
+        # default to 'main' if item.version was not specified in the csv file (aka if its value is None)
+        #version: "{{ item.version | default('main') }}"
+        #version: "{{ item.version if item.version != None else 'main' }}"
+      loop: "{{ csv_data.list }}"
+
+    - name: Creating symlinks
+      ansible.builtin.file:
+        src: "{{ clone_to_path }}/{{ item.name }}/{{ item.link }}"
+        dest: "{{ link_to_path }}/{{ item.link }}"
+        state: link
+      when: item.link != None
+      loop: "{{ csv_data.list }}"

@@ -1,0 +1,18 @@
+---
+
+- name: Install npm packages
+  gather_facts: false
+  connection: local
+  hosts: localhost
+  become: yes
+  vars:
+    packages: "packages_npm.txt"
+  tasks:
+  
+    - name: Installing npm packages
+      ansible.builtin.npm:
+        global: true
+        # The following, which works for 'pip' and 'dnf' modules, does not work here...
+        #name: "{{ lookup('file', packages).splitlines() }}"
+        name: "{{ item }}"
+      loop: "{{ lookup('file', packages).splitlines() }}"

@@ -1,0 +1,21 @@
+---
+
+- name: Modify configuration files
+  gather_facts: false
+  connection: local
+  hosts: localhost
+  vars:
+    csv_file: 'configs.csv'
+  tasks:
+
+    - name: Get data from csv file
+      read_csv:
+        path: "{{ csv_file }}"
+      register: csv_data
+
+    - name: Modifying configuration files
+      ansible.builtin.lineinfile:
+        path: "{{ item.file }}"
+        regexp: "{{ item.regexp }}"
+        line: "{{ item.line }}"
+      loop: "{{ csv_data.list }}"

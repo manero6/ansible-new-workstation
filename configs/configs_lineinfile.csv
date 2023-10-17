@@ -1,0 +1,2 @@
+file,regexp,line
+~/.config/gtk-3.0/settings.ini,^gtk-application-prefer-dark-theme=,gtk-application-prefer-dark-theme=1

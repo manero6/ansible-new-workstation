@@ -13,9 +13,8 @@
     - name: Linking manero6 dotfiles
       ansible.builtin.file:
         src: "{{ dotfile_repo_path }}/{{ item }}"
-        # Destination path is preceeded with a '.' at the beginning.
-        # This links files like 'vimrc' to '~/.vimrc', or
-        # 'config/mpv/input.conf' to '~/.config/mpv/input.conf'.
+        # Destination is exactly like the source but preceeded by '~/.' aka home directory and '.' (dot).
+        # This links files like 'vimrc' to '~/.vimrc', or 'config/mpv/input.conf' to '~/.config/mpv/input.conf'.
         dest: "~/.{{ item }}"
         state: link
       loop: "{{ lookup('file', dotfiles).splitlines() }}"

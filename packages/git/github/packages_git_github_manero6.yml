@@ -23,13 +23,3 @@
         #version: "{{ item.version | default('main') }}"
         version: "{{ item.version if item.version != None else 'main' }}"
       loop: "{{ csv_data.list }}"
-
-          #- name: Creating symlink for repo "manero6/{{ item.name }}"
-          #  ansible.builtin.file:
-          #    src: "{{ clone_to_path }}/{{ item.name }}/{{ item.to_link }}"
-          #    dest: "{{ item.link_to_path | link_to_path + '/' + item.to_link }}"
-          #    state: link
-          #  loop:
-          #    - "{{ pizzaiuolo }}"
-          #    - "{{ stuFFFinder }}"
-          #    - "{{ stuFFFinder_configs }}"

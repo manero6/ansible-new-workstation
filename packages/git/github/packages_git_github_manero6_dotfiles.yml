@@ -1,0 +1,21 @@
+---
+# 'manero6/dotfiles' repo must be already cloned! This is done in 'packages_git_github_manero6.yml'.
+
+- name: Link manero6 dotfiles
+  gather_facts: false
+  connection: local
+  hosts: localhost
+  vars:
+    dotfiles: "packages_git_github_manero6_dotfiles.txt"
+    dotfile_repo_path: ~/git/github/manero6/dotfiles
+  tasks:
+  
+    - name: Linking manero6 dotfiles
+      ansible.builtin.file:
+        src: "{{ dotfile_repo_path }}/{{ item }}"
+        # Destination path is preceeded with a '.' at the beginning.
+        # This links files like 'vimrc' to '~/.vimrc', or
+        # 'config/mpv/input.conf' to '~/.config/mpv/input.conf'.
+        dest: "~/.{{ item }}"
+        state: link
+      loop: "{{ lookup('file', dotfiles).splitlines() }}"

@@ -1,0 +1,3 @@
+vimrc
+config/mpv/input.conf
+config/mpv/mpv.conf

@@ -1,7 +1,7 @@
 name,URL,version
 dotfiles,git@github.com:manero6/dotfiles.git
 pizzaiuolo,git@github.com:manero6/pizzaiuolo.git
-stuFFFinder,git@github.com:manero6/FFF.git,configs
+stuFFFinder,git@github.com:manero6/FFF.git
 stuFFFinder-configs,git@github.com:manero6/FFF-configs.git
 Boardclip,git@github.com:manero6/Boardclip.git
 bashrc.d,git@github.com:manero6/bashrc.d.git

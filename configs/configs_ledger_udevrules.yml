@@ -1,0 +1,32 @@
+---
+# Other modules such as 'url', 'get_url', etc. would work as well, but the following resembles more the original script suggested by Ledger,
+# which is: "wget -q -O - https://raw.githubusercontent.com/LedgerHQ/udev-rules/master/add_udev_rules.sh | sudo bash"
+
+- name: Add udev rules for Ledger hardware to work correctly
+  gather_facts: false
+  connection: local
+  hosts: localhost
+  become: yes
+  vars:
+    script_URL: "https://raw.githubusercontent.com/LedgerHQ/udev-rules/master/add_udev_rules.sh"
+  tasks:
+  
+    - name: Getting Ledger udev rules
+      ansible.builtin.command: wget -q -O - "{{ script_URL }}"
+      register: ledger_script
+
+    - name: Printing Ledger udev rules
+      ansible.builtin.debug:
+        var: ledger_script.stdout_lines
+
+    - name: Adding Ledger udev rules
+      # 'shell' module instead of 'command' to allow pipes
+      ansible.builtin.shell: wget -q -O - "{{ script_URL }}" | bash
+      
+      # I know running wget thice is evil, but I can't get the following code to run properly 
+      #ansible.builtin.command: bash "{{ ledger_script.stdout }}"
+      #register: echo_cmd
+
+        #- debug:
+        # var: echo_cmd
+

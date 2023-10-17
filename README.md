@@ -9,5 +9,5 @@ more info soon ;)
 - if cloning with SSH
   - a SSH key should be there (else import one or create a new one with `ssh-keygen`)
     - if the key is new, then it should be imported to GitHub, GitLab, etc.
-  - SSH access to `github.com`, `gist.github.com`, etc. should be established before running the git/gist playbook
+  - SSH access to `github.com`, `gist.github.com`, etc. should be established before running any git/gist playbook
     - else ansible will not be able the go beyond the 'key fingerprint' prompt

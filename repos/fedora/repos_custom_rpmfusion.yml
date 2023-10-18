@@ -6,14 +6,19 @@
   connection: local
   hosts: localhost
   become: yes
+  vars:
+    rpmfusion:
+      free: "https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm"
+      nonfree: "https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm"
   tasks:
   
+    # The next 2 steps are needed to execute '$(rpm -E %fedora)' and get the correct Fedora release number
     - name: Get RPM Fusion free URL
-      shell: echo "https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm"
+      shell: echo "{{ rpmfusion.free }}"
       register: rpmfusion_free
 
     - name: Get RPM Fusion nonfree URL
-      shell: echo "https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm"
+      shell: echo "{{ rpmfusion.nonfree }}"
       register: rpmfusion_nonfree
 
     - name: Set correct RPM Fusion free URL

@@ -1,0 +1,3 @@
+lukenukem/asus-linux
+alih/libstrangle
+ycollet/audinux
